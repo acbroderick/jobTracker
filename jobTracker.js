@@ -28,7 +28,7 @@ var jobsList = {
 
   toggleAll: function() {
     //sets all as applied or all as not applied
-  }
+  },
 
   removeJob: function() {
     //removes job from jobList
@@ -38,7 +38,7 @@ var jobsList = {
 
 //view
 
-var jobViewer: {
+var jobViewer = {
 
     displayJobs: function() {
       //creates ul and populates it with jobs from jobList
@@ -59,7 +59,6 @@ var jobViewer: {
     setUpEventListeners: function() {
       //connects onclick events to buttons according to their class.
     }
-  }
 
 };
 
