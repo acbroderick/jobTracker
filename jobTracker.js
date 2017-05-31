@@ -2,35 +2,63 @@
 
 var jobsList = {
 
-  jobRecord: {
-    position: '',
-    company: '',
-    source: '',
-    applied: false,
-    applicationStatus: 'not submitted'
+  jobs: [],
+
+   Job: function(position, company, source) {
+    this.position = position;
+    this.company = company;
+    this.source = source;
+    this.applied = false;
+    this.applicationStatus = 'Not submitted';
   },
 
-  appliedJobs: {}, //position and company
-
   addJob: function(position, company, source) {
+    this.jobs.push(new this.Job(position, company, source));
     //adds new job into jobList
     //applied and applicationStatus automatically set to false and not submitted respectively
   },
 
-  toggleApplied: function(job) {
-    //takes from jobList, sets applied to true, status to submitted and pushes to appliedJobs
-    //takes from applied, sets applied to false, status to unsubmitted and assigns to jobsList
+  toggleApplied: function(position, company) {
+    for (var i = 0; i < this.jobs.length; i++) {
+      if (this.jobs[i].position === position && this.jobs[i].company === company) {
+        if (this.jobs[i].applied === false) {
+          this.jobs[i].applied = true;
+          this.jobs[i].applicationStatus = 'Pending';
+        } else {
+          this.jobs[i].applied = false;
+          this.jobs[i].applicationStatus = 'Not submitted';
+        }
+      }
+    }
+    //takes from jobs, sets applied to true, status to submitted and pushes to appliedJobs
+    //takes from applied, sets applied to false, status to unsubmitted pushes to jobs
   },
 
-  companyComms: function(job) {
+  companyComms: function(position, company) {
     //changes application status from submitted to rejected, interview extended, or offer received
   },
 
   toggleAll: function() {
-    //sets all as applied or all as not applied
-  }
+    for (var i = 0; i < this.jobs.length; i++) {
+      if (this.jobs[i].applied === false) {
+        this.jobs[i].applied = true;
+        this.jobs[i].applicationStatus = 'Pending';
+      } else {
+        this.jobs[i].applied = false;
+        this.jobs[i].applicationStatus = 'Not submitted';
+      }
+    }
+    //sets all as applied or all as not applied, pending or not submitted
+  },
 
-  removeJob: function() {
+  removeJob: function(position, company) {
+    var index;
+    for (var i = 0; i < this.jobs.length; i++) {
+      if (this.jobs[i].position === position && this.jobs[i].company === company) {
+          index = i;
+      }
+    }
+    this.jobs.splice(index, 1);
     //removes job from jobList
   }
 
@@ -38,27 +66,26 @@ var jobsList = {
 
 //view
 
-var jobViewer: {
+var jobViewer = {
 
-    displayJobs: function() {
+  displayJobs: function() {
       //creates ul and populates it with jobs from jobList
-    },
+  },
 
-    strinfigyJob: function(job) {
+  strinfigyJob: function(job) {
       //returns stringified version of job
-    },
+  },
 
-    createApplyButton: function() {
+  createApplyButton: function() {
       //create apply button
-    },
+  },
 
-    createCompanyCommsButton: function() {
+  createCompanyCommsButton: function() {
       //create company comms button
-    },
+  },
 
-    setUpEventListeners: function() {
+  setUpEventListeners: function() {
       //connects onclick events to buttons according to their class.
-    }
   }
 
 };
@@ -110,7 +137,7 @@ var initialize = function() {
   handlers.setView(view);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  initialize();
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//   initialize();
+// });
 
