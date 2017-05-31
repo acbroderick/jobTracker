@@ -28,7 +28,7 @@ var jobsList = {
 
   toggleAll: function() {
     //sets all as applied or all as not applied
-  }
+  },
 
   removeJob: function() {
     //removes job from jobList
@@ -38,7 +38,7 @@ var jobsList = {
 
 //view
 
-var jobViewer: {
+var jobViewer = {
 
     displayJobs: function() {
       //creates ul and populates it with jobs from jobList
@@ -59,7 +59,6 @@ var jobViewer: {
     setUpEventListeners: function() {
       //connects onclick events to buttons according to their class.
     }
-  }
 
 };
 
@@ -72,10 +71,12 @@ var handlers = {
   view: {},
 
   setModel: function (model) {
-    //sets model on page load
+    this.model = model;
+   //sets model on page load
   },
 
   setView: function (view) {
+    this.view = view;
     //sets view on page load
   },
 
@@ -91,6 +92,7 @@ var handlers = {
   toggleApplied: function(job) {
     //calls JobList.toggleApplied();
   },
+
   companyComms: function (job){
     //calls JobList.companyComms();
   },
@@ -106,11 +108,14 @@ var handlers = {
 //
 
 var initialize = function() {
-  handlers.setModel(model);
-  handlers.setView(view);
+  handlers.setModel(jobsList);
+  handlers.setView(jobViewer);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  initialize();
-});
+initialize();
+console.log(handlers);
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   initialize();
+// });
 
