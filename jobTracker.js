@@ -1,16 +1,16 @@
-var model = {
+//model
+
+var jobsList = {
 
   jobRecord: {
-    position: '';
-    company: '';
-    source: '';
+    position: '',
+    company: '',
+    source: '',
     applied: false,
     applicationStatus: 'not submitted'
   },
 
-  jobsList: {},
-
-  appliedJobs: {},
+  appliedJobs: {}, //position and company
 
   addJob: function(position, company, source) {
     //adds new job into jobList
@@ -36,9 +36,9 @@ var model = {
 
 };
 
-var view = {
+//view
 
-  jobViewer: {
+var jobViewer: {
 
     displayJobs: function() {
       //creates ul and populates it with jobs from jobList
@@ -63,7 +63,9 @@ var view = {
 
 };
 
-var controller = {
+//controller
+
+var handlers = {
 
   model: {},
 
@@ -81,9 +83,9 @@ var controller = {
     //calls jobViewer.displayJobs();
   },
 
-  addJob: function () {
+  addJob: function (position, company, source) {
     //calls JobList.addJob();
-   //calls jobViewer.disaplyJob();
+    //calls jobViewer.disaplyJob();
   },
 
   toggleApplied: function(job) {
@@ -104,8 +106,8 @@ var controller = {
 //
 
 var initialize = function() {
-  controller.setModel(model);
-  controlled.setView(view);
+  handlers.setModel(model);
+  handlers.setView(view);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
