@@ -28,7 +28,7 @@ var jobsList = {
 
   toggleAll: function() {
     //sets all as applied or all as not applied
-  }
+  },
 
   removeJob: function() {
     //removes job from jobList
@@ -38,13 +38,22 @@ var jobsList = {
 
 //view
 
-var jobViewer: {
+var jobViewer = {
+  //just for the console for now
 
     displayJobs: function() {
+      console.log(jobsList.jobs);
       //creates ul and populates it with jobs from jobList
     },
 
-    strinfigyJob: function(job) {
+    strinfigyJob: function(position, company) {
+      var stringified = '';
+      for (var i = 0; i < jobsList.jobs.length; i++) {
+        if (jobsList.jobs[i].position === position && jobsList.jobs[i]. company === company) {
+          stringified = JSON.stringify(jobsList.jobs[i]);
+        }
+      }
+      return stringified;
       //returns stringified version of job
     },
 
@@ -59,7 +68,6 @@ var jobViewer: {
     setUpEventListeners: function() {
       //connects onclick events to buttons according to their class.
     }
-  }
 
 };
 
