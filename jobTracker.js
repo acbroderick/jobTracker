@@ -2,15 +2,15 @@
 
 var jobsList = {
 
-  jobRecord: {
-    position: '',
-    company: '',
-    source: '',
-    applied: false,
-    applicationStatus: 'not submitted'
-  },
+  jobs: [],
 
-  appliedJobs: {}, //position and company
+   Job: function(position, company, source) {
+    this.position = position;
+    this.company = company;
+    this.source = source;
+    this.applied = false;
+    this.applicationStatus = 'Not submitted';
+  },
 
   addJob: function(position, company, source) {
     //adds new job into jobList
