@@ -81,23 +81,30 @@ var handlers = {
   },
 
   displayJobs: function() {
+    jobViewer.displayJobs();
     //calls jobViewer.displayJobs();
   },
 
   addJob: function (position, company, source) {
+    jobsList.addJob(position, company, source);
+    jobsViewer.displayJobs();
     //calls JobList.addJob();
     //calls jobViewer.disaplyJob();
   },
 
-  toggleApplied: function(job) {
+  toggleApplied: function(position, company) {
+    jobsList.toggleApplied(position, company);
     //calls JobList.toggleApplied();
   },
 
-  companyComms: function (job){
+  companyComms: function (position, company){
     //calls JobList.companyComms();
+    jobsList.companyComms(position, company);
   },
 
-  removeJob: function (job) {
+  removeJob: function (position, company) {
+    jobsList.removeJob(position, company);
+    jobViewer.displayJobs();
     //calls jobList.removeJob();
     //calls jobViewer.displayJob();
   }
