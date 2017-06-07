@@ -20,29 +20,25 @@ var jobsList = {
     //applied and applicationStatus automatically set to false and not submitted respectively
   },
 
-  toggleApplied: function(position, company) {
-    for (var key in this.jobs) {
-      if(this.jobs[key].position === position && this.jobs[key].company === company) {
-        this.jobs[key].applied = !this.jobs[key].applied;
-          if(this.jobs[key].applicationStatus === 'Not submitted') {
-            this.jobs[key].applicationStatus = 'Pending';
-          }  else {
-            this.jobs[key].applicationStatus = 'Not submitted';
-          }
+  toggleApplied: function(position) {
+    this.jobs[position].applied = !this.jobs[position].applied;
+      if (this.jobs[position].applicationStatus === 'Not submitted'){
+        this.jobs[position].applicationStatus = 'Pending';
+      }  else {
+          this.jobs[position].applicationStatus = 'Not submitted';
       }
-    }
     //takes from jobList, sets applied to true, status to submitted and pushes to appliedJobs
     //takes from applied, sets applied to false, status to unsubmitted and assigns to jobsList
   },
 
-  companyComms: function(position, company, comm) {
-    for (var key in this.jobs) {
-      if(this.jobs[key].position === position && this.jobs[key].company === company) {
-        this.jobs[key].applicationStatus = comm
-      }
-    }
-    //changes application status from submitted to rejected, interview extended, or offer received
-  },
+  // companyComms: function(position, company, comm) {
+  //   for (var key in this.jobs) {
+  //     if(this.jobs[key].position === position && this.jobs[key].company === company) {
+  //       this.jobs[key].applicationStatus = comm
+  //     }
+  //   }
+  //   //changes application status from submitted to rejected, interview extended, or offer received
+  // },
 
   toggleAll: function() {
      for (var key in this.jobs) {
@@ -56,9 +52,12 @@ var jobsList = {
     //sets all as applied or all as not applied
   },
 
-  removeJob: function() {
+  removeJob: function(position) {
+
     for (var key in this.jobs) {
-      delete this.jobs[key];
+      if (key === position) {
+        delete this.jobs[key];
+      }
     }
   //removes job from jobList
   }

@@ -39,17 +39,8 @@ var jobController = {
     //calls jobViewer.disaplyJob();
   },
 
-  toggleApplied: function(position, company) {
-    var toggleButton = document.getElementById('toggle');
-    var toggleForm = document.getElementById('toggleForm');
-    var positionInput = toggleForm.elements[0].value;
-    var companyInput = toggleForm.elements[1].value;
-
-    jobsList.toggleApplied(positionInput, companyInput);
-
-    positionInput = toggleForm.elements[0].value = '';
-    companyInput = toggleForm.elements[1].value = '';
-
+  toggleApplied: function(position) {
+    jobsList.toggleApplied(position);
     jobViewer.displayJobs();
     //calls JobList.toggleApplied();
   },
@@ -60,29 +51,29 @@ var jobController = {
     //valls JobsList.toggleAll();
   },
 
-  companyComms: function (position, company, comm){
-    var companyCommsButton = document.getElementById('addComm');
-    var companyForm = document.getElementById('companyCommsForm');
-    var positionInput = companyForm.elements[0].value;
-    var companyInput = companyForm.elements[1].value;
-    var commsInput = companyForm.elements[2].value;
+  // companyComms: function (position, company, comm){
+  //   var companyCommsButton = document.getElementById('addComm');
+  //   var companyForm = document.getElementById('companyCommsForm');
+  //   var positionInput = companyForm.elements[0].value;
+  //   var companyInput = companyForm.elements[1].value;
+  //   var commsInput = companyForm.elements[2].value;
 
 
-    jobsList.companyComms(positionInput, companyInput, commsInput);
+  //   jobsList.companyComms(positionInput, companyInput, commsInput);
 
-    positionInput = companyForm.elements[0].value = '';
-    companyInput = companyForm.elements[1].value = '';
-    commsInput = companyForm.elements[2].value = '';
+  //   positionInput = companyForm.elements[0].value = '';
+  //   companyInput = companyForm.elements[1].value = '';
+  //   commsInput = companyForm.elements[2].value = '';
 
+  //   jobViewer.displayJobs();
+
+
+  //   //calls JobList.companyComms();
+  // },
+
+  removeJob: function (position) {
+    jobsList.removeJob(position);
     jobViewer.displayJobs();
-
-
-    //calls JobList.companyComms();
-  },
-
-  removeJob: function () {
-    jobsList.removeJob();
-    jobsViewer.displayJobs();
   }
 
     // var removeButton = document.getElementById('remove');

@@ -7,36 +7,61 @@ var jobViewer = {
         var jobsUL = document.createElement('ul');
         jobsOL.appendChild(jobsUL);
         jobsOL.appendChild(this.createRemoveButton());
-          for (var prop in jobsList.jobs[key]) {
-            var jobsLI = document.createElement('li');
-            jobsUL.appendChild(jobsLI).innerHTML = prop + ": " + jobsList.jobs[key][prop];
+        jobsOL.appendChild(this.createToggleButton());
+        jobsUL.id = key;
+        for (var prop in jobsList.jobs[key]) {
+          var jobsLI = document.createElement('li');
+          jobsUL.appendChild(jobsLI).innerHTML = prop[0].toUpperCase() + prop.slice(1, prop.length) + ": " + jobsList.jobs[key][prop];
         }
       }
-      console.log(jobsList.jobs);
-      //creates ul and populates it with jobs from jobList
-    },
 
-    strinfigyJob: function(position, company) {
-      JSON.stringify()
-      //returns stringified version of job
+      //creates ul and populates it with jobs from jobList
     },
 
     createRemoveButton: function() {
       //create apply button
       var removeButton = document.createElement('button');
-        removeButton.addEventListener('click', function () {
-          jobsList.removeJob();
-        })
-      removeButton.innerHTML = 'Remove Job';
+      removeButton.textContent = 'Remove Job';
+      removeButton.className = 'removeButton';
       return removeButton;
     },
 
-    createCompanyCommsButton: function() {
-      //create company comms button
+    createToggleButton: function() {
+      var toggleButton = document.createElement('button');
+      toggleButton.textContent = 'Toggle Applied';
+      toggleButton.className = 'toggleButton';
+      return toggleButton;
     },
 
     setUpEventListeners: function() {
-      //connects onclick events to buttons according to their class.
-    }
+      var jobsOL = document.getElementById('jobs');
 
-};
+      jobsOL.addEventListener('click', function(event) {
+        var elementClicked = event.target;
+        if (elementClicked.className === 'removeButton') {
+          var position = elementClicked.parentNode.children[0].id;
+            jobController.removeJob(position);
+          }
+      });
+
+      jobsOL.addEventListener('click', function(event) {
+        var elementClicked = event.target;
+        console.log(elementClicked)
+          if (elementClicked.className === 'toggleButton') {
+            var position = elementClicked.parentNode.children[0].id;
+            console.log(position);
+            jobController.toggleApplied(position);
+        }
+      });
+    }
+}
+
+
+
+
+
+
+
+
+
+
