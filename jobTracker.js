@@ -2,7 +2,8 @@
 
 var jobsList = {
 
-  jobs: [],
+  jobs: {},
+  jobID: 0,
 
    Job: function(position, company, source) {
     this.position = position;
@@ -13,38 +14,68 @@ var jobsList = {
   },
 
   addJob: function(position, company, source) {
+    this.jobs[this.jobID] = new this.Job(position, company, source);
+    this.jobID++
     //adds new job into jobList
     //applied and applicationStatus automatically set to false and not submitted respectively
   },
 
-  toggleApplied: function(job) {
+  toggleApplied: function(position, company) {
+    for (var key in this.jobs) {
+      if(this.jobs[key].position === position && this.jobs[key].company === company) {
+        this.jobs[key].applied = !this.jobs[key].applied;
+          if(this.jobs[key].applicationStatus === 'Not submitted') {
+            this.jobs[key].applicationStatus = 'Pending';
+          }  else {
+            this.jobs[key].applicationStatus = 'Not Submitted';
+          }
+      }
+    }
     //takes from jobList, sets applied to true, status to submitted and pushes to appliedJobs
     //takes from applied, sets applied to false, status to unsubmitted and assigns to jobsList
   },
 
-  companyComms: function(job) {
+  companyComms: function(position, company, comm) {
+    for (var key in this.jobs) {
+      if(this.jobs[key].position === position && this.jobs[key].company === company) {
+        this.jobs[key].applicationStatus = comm
+      }
+    }
     //changes application status from submitted to rejected, interview extended, or offer received
   },
 
   toggleAll: function() {
+     for (var key in this.jobs) {
+      this.jobs[key].applied = !this.jobs[key].applied;
+           if(this.jobs[key].applicationStatus === 'Not submitted') {
+            this.jobs[key].applicationStatus = 'Pending';
+          }  else {
+            this.jobs[key].applicationStatus = 'Not Submitted';
+          }
+      }
     //sets all as applied or all as not applied
   },
 
   removeJob: function() {
-    //removes job from jobList
-  }
-
-};
-
+    for (var key in this.jobs) {
+      if(this.jobs[key].position === position && this.jobs[key].company === company) {
+        delete this.jobs[key];
+      }
+    }
+  //removes job from jobList
+  };
+}
 //view
 
 var jobViewer = {
 
     displayJobs: function() {
+      console.log(this.jobs);
       //creates ul and populates it with jobs from jobList
     },
 
-    strinfigyJob: function(job) {
+    strinfigyJob: function(position, company) {
+      JSON.stringify()
       //returns stringified version of job
     },
 
@@ -104,12 +135,12 @@ var handlers = {
 
 //
 
-var initialize = function() {
-  handlers.setModel(model);
-  handlers.setView(view);
-}
+// var initialize = function() {
+//   handlers.setModel(model);
+//   handlers.setView(view);
+// }
 
-document.addEventListener('DOMContentLoaded', function() {
-  initialize();
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//   initialize();
+// });
 

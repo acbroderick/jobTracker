@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      initialize();
+    });
+  </script>
+
+  <link rel='stylesheet' type='text/css' href='jobTracker.css'>
+
+  <script type="text/javascript" src="initialize.js"></script>
+  <script type="text/javascript" src="jobModel.js"></script>
+  <script type="text/javascript" src="jobController.js"></script>
+  <script type="text/javascript" src="jobViewer.js"></script>
+
+  <title>Job Tracker</title>
+
+</head>
+
+<body>
+
+  <h1>Job Tracker</h1>
+
+  <div id= controller>
+    <form id='addForm'>
+      Position: <input type='text' name='position'>
+      Company: <input type='text' name='company'>
+      Source: <input type='text' name='source'>
+    </form>
+    <button onclick='jobController.addJob()' id='add'>Add Job</button>
+
+<!--     <form id='removeForm'>
+      Position: <input type='text' name='position'>
+      Company: <input type='text' name='company'>
+    </form>
+    <button onclick='jobController.removeJob()'id='remove'>Remove Job</button> -->
+
+    <form id=toggleForm>
+      Position: <input type='text' name='position'>
+      Company: <input type='text' name='company'>
+    </form>
+    <button onclick='jobController.toggleApplied()' id='toggle'>Toggle Applied</button>
+
+    <form id=companyCommsForm>
+      Position: <input type='text' name='position'>
+      Company: <input type='text' name='company'>
+      New communication: <input type='text' name='communication'>
+    </form>
+    <button onclick='jobController.companyComms()' id='addComm'>Update Application Status</button> <br> <br>
+
+    <button onclick='jobController.toggleAll()' id='toggeAll'>Toggle All</button>
+
+  </div>
+
+  <ol id='jobs'>
+  </ol>
+
+</body>
+</html>
