@@ -6,8 +6,8 @@ var jobViewer = {
       for (var key in jobsList.jobs) {
         var jobsUL = document.createElement('ul');
         jobsOL.appendChild(jobsUL);
-        jobsOL.appendChild(this.createRemoveButton());
-        jobsOL.appendChild(this.createToggleButton());
+        jobsUL.appendChild(this.createRemoveButton());
+        jobsUL.appendChild(this.createToggleButton());
         jobsUL.id = key;
         for (var prop in jobsList.jobs[key]) {
           var jobsLI = document.createElement('li');
@@ -39,7 +39,7 @@ var jobViewer = {
       jobsOL.addEventListener('click', function(event) {
         var elementClicked = event.target;
         if (elementClicked.className === 'removeButton') {
-          var position = elementClicked.parentNode.children[0].id;
+          var position = elementClicked.parentNode.id;
             jobController.removeJob(position);
           }
       });
@@ -48,7 +48,7 @@ var jobViewer = {
         var elementClicked = event.target;
         console.log(elementClicked)
           if (elementClicked.className === 'toggleButton') {
-            var position = elementClicked.parentNode.children[0].id;
+            var position = elementClicked.parentNode.id;
             console.log(position);
             jobController.toggleApplied(position);
         }
